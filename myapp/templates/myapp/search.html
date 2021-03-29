@@ -1,0 +1,94 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>How to Create responsive Homepage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/Search.css' %}">
+</head>
+<body>
+    <header>
+    <div class="wrapper">
+        <div class="logo">
+            <img src="https://i.postimg.cc/mg4rWBmv/logo.png" alt="">
+        </div>
+        <ul class="nav-area">
+            <li><a href="#">search</a></li>
+            <li><a href="#">add</a></li>
+            <li><a href="#">delete</a></li>
+            <li><a href="#">reports</a></li>
+            <li><a href="#">bill</a></li>
+        </ul>
+    </div>
+    </header>
+    <div class="btn-box">
+       <button type="button" id="name-btn">NAME</button>
+       <button type="button" id="ID-btn">ID</button>
+       <button type="button" id="company-btn">COMPANY</button>
+       <button type="button" id="expiry-btn">EXPIRY DATE</button>
+   </div>
+
+   <div class="container">
+       <form id="form1">
+           <h3>NAME</h3>
+           <input type="text" placeholder="Medicine Name" required>
+           <button type="submit">Submit</button>
+       </form>
+       <form id="form2">
+           <h3>ID</h3>
+           <input type="text" placeholder="Medicine ID" required>
+           <button type="submit">Submit</button>
+       </form>
+       <form id="form3">
+           <h3>COMPANY</h3>
+           <input type="text" placeholder="Company Name " required>
+           <button type="submit">Submit</button>
+       </form>
+       <form id="form4">
+           <h3>EXPIRY DATE</h3>
+           <input type="date" placeholder="Expiry Date" required>
+           <button type="submit">Submit</button>
+       </form>
+   </div>
+
+   <script>
+
+       var form1 = document.getElementById("form1");
+       var form2 = document.getElementById("form2");
+       var form3 = document.getElementById("form3");
+       var form4 = document.getElementById("form4");
+
+       var name_btn = document.getElementById("name-btn");
+       var ID_btn = document.getElementById("ID-btn");
+       var Company_btn = document.getElementById("company-btn");
+       var Expiry_btn = document.getElementById("expiry-btn");
+
+       name_btn.onclick = function(){
+           form1.style.left = "40px";
+           form2.style.left = "450px";
+           form3.style.left = "450px";
+           form4.style.left = "450px";
+       }
+       ID_btn.onclick = function(){
+           form1.style.left = "450px";
+           form2.style.left = "40px";
+           form3.style.left = "450px";
+           form4.style.left = "450px";
+       }
+       Company_btn.onclick = function(){
+           form1.style.left = "450px";
+           form2.style.left = "450px";
+           form3.style.left = "40px";
+           form4.style.left = "450px";
+       }
+       Expiry_btn.onclick = function(){
+           form1.style.left = "450px";
+           form2.style.left = "450px";
+           form3.style.left = "450px";
+           form4.style.left = "40px";
+       }
+
+   </script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if Country  %}
+<p>
+    <h1>{{Country}}</h1>
+</p>
+<ul>
+    {% for s in States %}
+    <li>{{s}}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>hello inside else</p>
+{% endif %}
+</body>
+</html>

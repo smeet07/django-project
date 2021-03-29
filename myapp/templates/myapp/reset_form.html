@@ -1,0 +1,28 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/register.css' %}">
+</head>
+<body>
+    <header>
+    <div class="wrapper">
+        <div class="logo">
+            <img src="https://i.postimg.cc/mg4rWBmv/logo.png" alt="">
+        </div>
+
+    </div>
+    </header>
+
+   <div class="container"><h3>Enter your password twice</h3>
+    <form method='POST' action=''>
+        {% csrf_token %}
+         {{ form.as_p}}
+       <button type="submit">Reset password</button>
+    </form>
+   </div>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/list_items.css' %}">
+</head>
+<body>
+    <header>
+    <div class="wrapper">
+        <div class="logo">
+            <img src="https://i.postimg.cc/mg4rWBmv/logo.png" alt="">
+        </div>
+        <ul class="nav-area">
+            <li><a href="{% url 'list_items' %}">search</a></li>
+<li><a href="{% url 'Add' %}">add</a></li>
+<li><a href="{% url 'delete' %}">delete</a></li>
+<li><a href="{% url 'report' %}">reports</a></li>
+<li><a href="{% url 'createbill' %}">bill</a></li>
+<li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </div>
+    </header>
+    <div class="container">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="header1">{{header}}</div>
+        <div class="container1">
+        <form method="post" action="">{% csrf_token %}
+        {{form.as_p}}
+            <button type="submit" >search</button></form>
+            </div>
+        <div>
+            <br><br>
+<table class="table">
+    <thead>
+    <tr>
+        <th>SR.NO</th>
+        <th>NAME</th>
+        <th>COMPANY</th>
+        <th>EXP DATE</th>
+        <th>QUANTITY</th>
+        <th>REORDER_LVL</th>
+        <th>TIMESTAMP</th>
+        <th>LAST UPDATED</th>
+
+    </tr>
+    </thead>
+    {% for instance in queryset %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td><a href="{% url 'update_items' instance.id %}">{{instance.name}}</a></td>
+        <td>{{instance.company}}</td>
+        <td>{{instance.exp_date}}</td>
+
+        <td>
+            {% if instance.quantity <= instance.reorder_level %}
+                <div style="background-color: #FFA500;"><a href="{% url 'details' instance.id %}">{{instance.quantity}}</a></div>
+            {% else %}
+                <a href="{% url 'details' instance.id %}">{{instance.quantity}}</a>
+            {% endif %}
+        </td>
+        <td><a href="{% url 'reorder' instance.id %}">{{instance.reorder_level}}</a></td>
+
+        <td>{{instance.timestamp}}</td>
+        <td>{{instance.Last_updated}}</td>
+
+    </tr>
+    {% endfor %}
+</table></div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/details.css' %}">
+</head>
+<body>
+    <header>
+    <div class="wrapper">
+        <div class="logo">
+            <img src="https://i.postimg.cc/mg4rWBmv/logo.png" alt="">
+        </div>
+        <ul class="nav-area">
+           <li><a href="{% url 'list_items' %}">search</a></li>
+<li><a href="{% url 'Add' %}">add</a></li>
+<li><a href="{% url 'delete' %}">delete</a></li>
+<li><a href="{% url 'report' %}">reports</a></li>
+<li><a href="{% url 'createbill' %}">bill</a></li>
+<li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </div>
+    </header>
+    <div class="container">{% if messages %}<ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>NAME</th>
+        <th>EXP DATE</th>
+        <th>QUANTITY</th>
+        <th>REORDER LEVEL</th>
+
+    </tr>
+    </thead>
+    <tr>
+        <td>{{queryset.name}}</td>
+        <td>{{queryset.exp_date}}</td>
+        <td>{{queryset.quantity}}</td>
+        <td>{{queryset.reorder_level}}</td>
+
+    </tr>
+</table>
+    <a href="{% url 'sell_items' queryset.id %}"><button type="submit" >Sell</button></a>
+        <a href="{% url 'purchase_items' queryset.id %}"><button type="submit" >Purchase</button></a>
+
+    </div>
+
+
+
+</body>
+</html>

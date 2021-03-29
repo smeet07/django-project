@@ -1,0 +1,37 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/css/home.css' %}">
+</head>
+<body>
+    <header>
+    <div class="wrapper">
+        <div class="logo">
+            <img src="https://i.postimg.cc/mg4rWBmv/logo.png" alt="">
+        </div>
+        <ul class="nav-area">
+            <li><a href="{% url 'list_items' %}">search</a></li>
+            <li><a href="{% url 'Add' %}">add</a></li>
+            <li><a href="{% url 'delete' %}">delete</a></li>
+            <li><a href="{% url 'report' %}">reports</a></li>
+            <li><a href="{% url 'createbill' %}">bill</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </div>
+    </header>
+
+
+
+
+
+<div class="container">
+<div class="welcome-text">
+    <h1>ONE PLACE <span>MANAGEMENT</span></h1>
+</div>
+    </div>
+
+</body>
+</html>

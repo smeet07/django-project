@@ -1,0 +1,28 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/delete_items.css' %}">
+</head>
+<body>
+    <header>
+    <div class="wrapper">
+        <div class="logo">
+            <img src="https://i.postimg.cc/mg4rWBmv/logo.png" alt="">
+        </div>
+
+    </div>
+    </header>
+
+   <div class="container">
+       <h1>are you sure you want to delete</h1>
+       <form method="post" action="">
+           {% csrf_token %}
+       <button type="submit" >Yes</button>
+       <div class="btn"><a href="{% url 'delete' %}"><h3>cancel</h3></a></div>
+   </form></div>
+
+</body>
+</html>
