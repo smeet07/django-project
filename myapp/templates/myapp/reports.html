@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How to Create responsive Homepage</title>
+    <title>Add</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
-   <link rel="stylesheet" type="text/css" href="{% static '/css/Search.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/list_items.css' %}">
 </head>
 <body>
     <header>
@@ -15,82 +14,46 @@
         </div>
         <ul class="nav-area">
             <li><a href="{% url 'list_items' %}">search</a></li>
-            <li><a href="{% url 'Add' %}">add</a></li>
-            <li><a href="{% url 'delete' %}">delete</a></li>
-            <li><a href="{% url 'report' %}">reports</a></li>
-            <li><a href="{% url 'createbill' %}">bill</a></li>
-            <li><a href="{% url 'logout' %}">Logout</a></li>
+<li><a href="{% url 'Add' %}">add</a></li>
+<li><a href="{% url 'delete' %}">delete</a></li>
+<li><a href="{% url 'report' %}">reports</a></li>
+<li><a href="{% url 'createbill' %}">bill</a></li>
+<li><a href="{% url 'logout' %}">Logout</a></li>
         </ul>
     </div>
     </header>
-    <div class="btn-box">
-       <button type="button" id="name-btn">DAILY</button>
-       <button type="button" id="ID-btn">MONTHLY</button>
-       <button type="button" id="company-btn">QUARTERLY</button>
-       <button type="button" id="expiry-btn">YEARLY</button>
-   </div>
+    <div class="container">
 
-   <div class="container">
-       <form id="form1">
+<table class="table">
+    <thead>
+    <tr>
+        <th>SR.NO</th>
+        <th>NAME</th>
+        <th>COMPANY</th>
+        <th>EXP DATE</th>
+        <th>QUANTITY</th>
+        <th>QTY SOLD</th>
+        <th>QTY BOUGHT</th>
+        <th>LAST UPDATED</th>
 
-           <button type="submit">COMPANY REPORT</button>
-           <button type="submit">MEDICINE REPORT</button>
-       </form>
-       <form id="form2">
+    </tr>
+    </thead>
+    {% for instance in queryset %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{instance.name}}</td>
+        <td>{{instance.company}}</td>
+        <td>{{instance.exp_date}}</td>
+        <td>{{instance.quantity}}</td>
+        <td>{{instance.sell_quantity}}</td>
+        <td>{{instance.purchase_quantity}}</td>
+        <td>{{instance.Last_updated}}</td>
 
-           <button type="submit">COMPANY REPORT</button>
-           <button type="submit">MEDICINE REPORT</button>
-       </form>
-       <form id="form3">
+    </tr>
+    {% endfor %}
+</table></div>
+</div>
 
-           <button type="submit">COMPANY REPORT</button>
-           <button type="submit">MEDICINE REPORT</button>
-       </form>
-       <form id="form4">
-
-           <button type="submit">COMPANY REPORT</button>
-           <button type="submit">MEDICINE REPORT</button>
-       </form>
-   </div>
-
-   <script>
-
-       var form1 = document.getElementById("form1");
-       var form2 = document.getElementById("form2");
-       var form3 = document.getElementById("form3");
-       var form4 = document.getElementById("form4");
-
-       var name_btn = document.getElementById("name-btn");
-       var ID_btn = document.getElementById("ID-btn");
-       var Company_btn = document.getElementById("company-btn");
-       var Expiry_btn = document.getElementById("expiry-btn");
-
-       name_btn.onclick = function(){
-           form1.style.left = "40px";
-           form2.style.left = "450px";
-           form3.style.left = "450px";
-           form4.style.left = "450px";
-       }
-       ID_btn.onclick = function(){
-           form1.style.left = "450px";
-           form2.style.left = "40px";
-           form3.style.left = "450px";
-           form4.style.left = "450px";
-       }
-       Company_btn.onclick = function(){
-           form1.style.left = "450px";
-           form2.style.left = "450px";
-           form3.style.left = "40px";
-           form4.style.left = "450px";
-       }
-       Expiry_btn.onclick = function(){
-           form1.style.left = "450px";
-           form2.style.left = "450px";
-           form3.style.left = "450px";
-           form4.style.left = "40px";
-       }
-
-   </script>
 
 </body>
 </html>

@@ -10,7 +10,13 @@ from django.contrib.auth import authenticate,login,logout
 def home1(request):
     return render(request,'myApp/initialhomepage.html')
 def reports(request):
-    return render(request,'myApp/reports.html')
+    header='List of Items'
+    queryset=MedicineHistory.objects.all()
+    context={
+        'header':header,
+        "queryset":queryset,
+    }
+    return render(request,'myApp/reports.html',context)
 def home(request):
 
     return render(request,'myapp/homepage.html')
@@ -69,8 +75,10 @@ def add_items(request):
 def add_items1(request):
     form = MedCreateForm(request.POST or None)
     if form.is_valid():
-        form.save()
+        instance=form.save()
+        instance.sell_quantity=0
         messages.success(request, 'Data Saved Successfully')
+        instance.save()
         return redirect('/list_items')
 
     context = {
@@ -154,6 +162,7 @@ def sell_items(request,pk):
     form=SellForm(request.POST or None,instance=queryset)
     if form.is_valid():
         instance=form.save(commit=False)
+        instance.purchase_quantity=0
         instance.quantity=instance.quantity-instance.sell_quantity
         messages.success(request,"sold successfully "+str(instance.quantity)+" of "+str(instance.name)+" left")
         instance.save()
