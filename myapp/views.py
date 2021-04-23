@@ -2,20 +2,88 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 import csv
 from .models import  *
-from .forms import MedCreateForm,MedSearchForm,MedUpdateForm,CreateUserForm,SellForm,PurchaseForm,reorder,CreateBillForm
+from .forms import MedCreateForm,MedSearchForm,MedUpdateForm,CreateUserForm,SellForm,PurchaseForm,reorder,CreateBillForm,MedicineHistorySearchForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
+from io import BytesIO
+from django.template.loader import get_template
+from django.views import View
+from xhtml2pdf import pisa
+def render_to_pdf(template_src,context_dict={}):
+    template=get_template(template_src)
+    html=template.render(context_dict)
+    result=BytesIO()
+    pdf=pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")),result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(),content_type='application/pdf')
+    return None
+
+class DownloadPdf(View):
+    def get(self,request,*args,**kwargs):
+        queryset = MedicineHistory.objects.order_by('-Last_updated').first()
+        data = {
+            "queryset":queryset
+
+        }
+        pdf=render_to_pdf('myApp/download.html',data)
+        response=HttpResponse(pdf,content_type='application/pdf')
+        filename="Bill_%s.pdf" %("12341231")
+        content="attachment; filename='%s'" %(filename)
+        response['Content-Disposition']=content
+        return response
+
 
 def home1(request):
     return render(request,'myApp/initialhomepage.html')
-def reports(request):
-    header='List of Items'
-    queryset=MedicineHistory.objects.all()
-    context={
-        'header':header,
-        "queryset":queryset,
+def download(request):
+    queryset = MedicineHistory.objects.order_by('-Last_updated').first()
+    header = 'Bill'
+    context = {
+        "queryset": queryset,
+        "header": header
     }
+
+    return render(request,'myApp/download.html',context)
+def bill(request):
+    queryset=MedicineHistory.objects.order_by('-Last_updated').first()
+    header='Bill'
+    context={
+        "queryset":queryset,
+        "header":header
+    }
+    return render(request,'myApp/createbill.html',context)
+def reports(request):
+    header='HISTORY'
+    queryset=MedicineHistory.objects.order_by('-sell_quantity')
+    form=MedicineHistorySearchForm(request.POST or None)
+    context = {
+
+        "queryset": queryset,
+        "header": header,
+        "form": form,
+    }
+    if request.method == 'POST':
+        queryset = MedicineHistory.objects.filter(company__icontains=form['company'].value(),
+                                           name__icontains=form['name'].value(),
+                                           Last_updated__range=[form['start_date'].value(),form['end_date'].value()]).order_by('-sell_quantity')
+
+        if form['export_to_csv'].value() == True:
+            response = HttpResponse(content_type='text/csv')
+            response['Content-Disposition'] = 'attachment;filename="list  of medicine.csv"'
+            writer = csv.writer(response)
+            writer.writerow(['name', 'company', 'quantity'])
+            instance = queryset
+            for medicine in instance:
+                writer.writerow([medicine.name, medicine.company, medicine.quantity])
+                return response
+        context = {
+            "form": form,
+            "header": header,
+            "queryset": queryset,
+
+        }
+
     return render(request,'myApp/reports.html',context)
 def home(request):
 
@@ -219,5 +287,6 @@ def createbill(request):
 
         }
         return render(request, 'myApp/Add.html', context)
+
 
 

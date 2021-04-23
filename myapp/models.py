@@ -11,6 +11,7 @@ class  Medicine(models.Model):
     Last_updated=models.DateTimeField(auto_now_add=False,auto_now=True)
     timestamp= models.DateTimeField(auto_now_add=True, auto_now=False)
     near_exp_date=models.DateField(blank=True,null=True)
+    activate=models.BooleanField(default=False)
     def __str__(self):
         return self.name + ' ' + str(self.quantity)
 class  MedicineHistory(models.Model):
@@ -24,6 +25,8 @@ class  MedicineHistory(models.Model):
     purchase_quantity=models.IntegerField(default='0',blank=True,null=True)
     Last_updated=models.DateTimeField(auto_now_add=False,auto_now=False,null=True)
     timestamp= models.DateTimeField(auto_now_add=False, auto_now=False,null=True)
+    activate=models.BooleanField(default=False)
+
 
 
 class  Sales(models.Model):

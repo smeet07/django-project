@@ -1,5 +1,5 @@
 from django import forms
-from .models import Medicine,Sales
+from .models import Medicine,Sales,MedicineHistory
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 class CreateUserForm(UserCreationForm):
@@ -45,3 +45,13 @@ class CreateBillForm(forms.ModelForm):
     class Meta:
         model=Sales
         fields=['name','company','Sales_date','quantity','amount']
+class DateInput(forms.DateInput):
+    input_type='date'
+
+class MedicineHistorySearchForm(forms.ModelForm):
+    export_to_csv = forms.BooleanField(required=False)
+    start_date = forms.DateTimeField(widget=DateInput,required=False)
+    end_date = forms.DateTimeField(widget=DateInput,required=False)
+    class Meta:
+        model=MedicineHistory
+        fields=['name','company']

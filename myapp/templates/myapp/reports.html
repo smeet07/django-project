@@ -23,7 +23,14 @@
     </div>
     </header>
     <div class="container">
-
+<div class="header1">{{header}}</div>
+        <div class="container1">
+        <form method="post" action="">{% csrf_token %}
+        {{form.as_p}}
+            <button type="submit" >search</button></form>
+            </div>
+        <div>
+            <br><br>
 <table class="table">
     <thead>
     <tr>

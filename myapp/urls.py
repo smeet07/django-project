@@ -28,7 +28,7 @@ urlpatterns = [
     path('templateTagsDemo/', views.templateTagsDemo),
     path('search.html',views.search),
     path('Add/',views.Add,),
-    path('createbill/',views.createbill,name='createbill'),
+    path('bill/',views.bill,name='createbill'),
     path('list_items/',views.list_items,name='list_items'),
     path('add_items/',add_items1,name='Add'),
     path('update_items/<str:pk>',views.update_items,name='update_items'),
@@ -45,6 +45,8 @@ urlpatterns = [
     path('sell_items/<str:pk>/',views.sell_items,name="sell_items"),
     path('purchase_items/<str:pk>/',views.purchase_items,name="purchase_items"),
     path('reorder/<str:pk>',views.reorder_level,name='reorder'),
+    path('pdf_download/',views.DownloadPdf.as_view(),name="download_pdf"),
+    path('download/',views.download,name="download")
 
 ]
 

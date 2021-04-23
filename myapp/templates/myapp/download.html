@@ -9,17 +9,7 @@
 <body>
     <header>
     <div class="wrapper">
-        <div class="logo">
-            <img src="https://i.postimg.cc/mg4rWBmv/logo.png" alt="">
-        </div>
-        <ul class="nav-area">
-            <li><a href="{% url 'list_items' %}">search</a></li>
-<li><a href="{% url 'Add' %}">add</a></li>
-<li><a href="{% url 'delete' %}">delete</a></li>
-<li><a href="{% url 'report' %}">reports</a></li>
-<li><a href="{% url 'createbill' %}">bill</a></li>
-<li><a href="{% url 'logout' %}">Logout</a></li>
-        </ul>
+
     </div>
     </header>
 
@@ -51,7 +41,7 @@
         <td><br>AMOUNT :</td>
         <td><br>{{queryset.price}}<br></td>
         </tr><tr>
-        <td><br><a href="{% url 'download' %}">download</a><br></td>
+        <td><br><a href="{% url 'download_pdf' %}">download</a><br></td>
 
 
     </tr>
