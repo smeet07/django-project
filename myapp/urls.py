@@ -46,6 +46,7 @@ urlpatterns = [
     path('purchase_items/<str:pk>/',views.purchase_items,name="purchase_items"),
     path('reorder/<str:pk>',views.reorder_level,name='reorder'),
     path('pdf_download/',views.DownloadPdf.as_view(),name="download_pdf"),
+    path('reorder_disp/',views.reorder_disp,name='reorder_disp'),
     path('download/',views.download,name="download")
 
 ]

@@ -31,11 +31,7 @@
         </ul>
         {% endif %}
         <div class="header1">{{header}}</div>
-        <div class="container1">
-        <form method="post" action="">{% csrf_token %}
-        {{form.as_p}}
-            <button type="submit" >search</button></form>
-            </div>
+
         <div>
             <br><br>
 <table class="table">
@@ -46,32 +42,26 @@
         <th>COMPANY</th>
         <th>EXP DATE</th>
         <th>QUANTITY</th>
-        <th><a href="{% url 'reorder_disp' %}">REORDER_LVL</a></th>
+        <th>REORDER_LVL</th>
         <th>TIMESTAMP</th>
         <th>LAST UPDATED</th>
 
     </tr>
     </thead>
+
     {% for instance in queryset %}
+     {% if instance.quantity <= instance.reorder_level %}
     <tr>
         <td>{{forloop.counter}}</td>
-        <td><a href="{% url 'update_items' instance.id %}">{{instance.name}}</a></td>
+        <td>{{instance.name}}</td>
         <td>{{instance.company}}</td>
         <td>{{instance.exp_date}}</td>
-
-        <td>
-            {% if instance.quantity <= instance.reorder_level %}
-                <div style="background-color: #FFA500;"><a href="{% url 'details' instance.id %}">{{instance.quantity}}</a></div>
-            {% else %}
-                <a href="{% url 'details' instance.id %}">{{instance.quantity}}</a>
-            {% endif %}
-        </td>
+        <td><div>{{instance.quantity}}</div></td>
         <td><a href="{% url 'reorder' instance.id %}">{{instance.reorder_level}}</a></td>
-
         <td>{{instance.timestamp}}</td>
         <td>{{instance.Last_updated}}</td>
-
     </tr>
+    {% endif %}
     {% endfor %}
 </table></div>
 </div>

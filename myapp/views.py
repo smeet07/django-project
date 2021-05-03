@@ -33,6 +33,14 @@ class DownloadPdf(View):
         response['Content-Disposition']=content
         return response
 
+def reorder_disp(request):
+    queryset=Medicine.objects.all()
+    context={
+        'queryset':queryset,
+        'header':"Low in quantity"
+    }
+    return render(request,'myApp/reorder_display.html',context)
+
 
 def home1(request):
     return render(request,'myApp/initialhomepage.html')
