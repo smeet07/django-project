@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '751s7b7dkr$2xwd6+hl%9t=72q-*9n#ifz(dj3pzk!u45nm2sl'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -79,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'medicinemgmt',
-        'USER':'Smeet7',
-        'PASSWORD':'Smeetosmeet7',
+        'USER':'',
+        'PASSWORD':'',
     }
 }
 
@@ -130,5 +131,5 @@ EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT='587'
 EMAIL_USE_TLS=True
-EMAIL_HOST_USER='smeetbn@gmail.com'
-EMAIL_HOST_PASSWORD='Smeet1003'
+EMAIL_HOST_USER=''
+EMAIL_HOST_PASSWORD=''

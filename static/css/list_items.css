@@ -185,6 +185,7 @@ form button{
 .table{
 font-size:13px;
 text-align:center;
+
 margin:auto;}
 .table tr:nth-child(odd){
 background: #BBCAE4}
@@ -192,7 +193,8 @@ background: #BBCAE4}
 background: #dae5f4}
 th{
 background-color:#337ab7;
-color:white;}
+color:white;
+text-decoration: none;}
 table, th, td {table-layout: fixed;
 width: 100%;
   border: 1px solid black;
@@ -205,6 +207,7 @@ table {
 }
 th {
   text-align: center;
+
 }
 .header1{
 font-family:helvetica;
@@ -214,3 +217,4 @@ text-align:center;
 width:100%;
 display:block;
 font-weight:bolder;}
+
