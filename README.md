@@ -1,6 +1,5 @@
 # miniproj pharmacy
 Made By:
-- Manan Pandya
-- Tushar Sarkar
 - Smeet Nagda
-- Hinal Pujara
+- Srinil khandwala
+- Sashank Mathamshetty
